@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+body{
+    background-color: white;
+}
+
+#container {
+    width: 600px;
+
+    margin: 0 auto;
+    text-align: center;
+    background:#FBE458;
+    height: 800px;
+    overflow: auto;
+    color: black;
+    border: 10px solid orange;
+    border-radius: 10px;
+}
+#container h1 {
+    margin-top: 50px;
+    text-transform: uppercase;
+}
+
+hr{
+    border-color: black;
+}
+
+#container ul{
+    margin-top: 50px;
+    padding-left: 0;
+}
+#container ul li{
+    list-style: none;
+ 
+    width: 80%;
+    opacity: 0;
+
+    height: 40px;
+    margin: 5px auto;
+    text-align: left;
+}
+#container ul li label{
+    margin: 0 15px;
+    vertical-align: middle;
+    height: 100%;
+    line-height: 40px;
+    font-size: 28px;
+
+}
+
+#container ul li #check{
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    -webkit-appearance: none;
+    border: 2px solid black;
+    position: relative;
+    outline: 0;
+}
+
+#container ul li #check:checked::after {
+    content: '\2714';
+    font-size: 20px;
+    position: absolute;
+    top: 0px;
+    left: 7px;
+    color: red;
+}
+
+#container ul li input[type='checkbox']:checked+label{
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.5);
+}
+#container .controls {
+    width: 60%;
+    margin: auto;
+}
+input {
+	padding-top: 30px;
+	width: 250px;
+	height: 60px;
+	font-size: 30px;
+	border: 0;
+    background: transparent;
+}
+
+input:focus {
+	outline:none;
+}
+
+#container .controls button{
+    width: 50%;
+    background: white;
+    border: none;
+    height: 40px;
+    margin-top: 2px;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+
+}
+#container .controls button:focus{
+    outline: 0;
+}
+
+#container .controls button:hover{
+    transform: scale(1.05);
+}
+#container .controls #add{
+    background-color: #2980b9;
+    border-radius: 10px;
+}
+
+#container .mycheck {
+    opacity: 1;
+    border-radius: 10px;
+}
+.visual {
+    opacity: 1 !important;
+    border-radius: 10px;
+}
+</style>
+
+
+</head>
+<body>
+        <div id="container">
+                <div class="controls">
+                    <h1>My To-do List</h1><hr>
+                    <input type="text" name="" placeholder="Enter your tasks..." id="input"><br>
+                    <button type="button" id="add" onclick="addItem()">Add</button>  
+            </div>
+                <ul id="list"> </ul>
+            </div>
+
+
+<script>
+       
+    var addButton = document.getElementById('add');
+    
+function addItem(){                
+         
+    var item = document.getElementById('input').value;        
+
+    if (item == '') {    
+        msg= "Enter your Task";
+        alert(msg);
+
+    } else {                       
+       
+        var ul = document.getElementById('list');
+        var li = document.createElement('li');
+
+        var x = document.createElement('input');
+        x.type = 'checkbox'  ;
+        x.setAttribute('id','check') ;
+       
+        var label = document.createElement('label');
+      //  var lines = document.createElement('hr');  // make a hr
+
+        ul.appendChild(label);                      
+        li.appendChild(x);
+        label.appendChild(document.createTextNode(item));
+      //  li.appendChild(lines);// append the hr
+        li.appendChild(label);
+        
+        ul.insertBefore(li, ul.childNodes[0]);
+        
+        li.className = 'visual';
+   
+        document.getElementById('input').value="";        
+    }
+}
+
+  
+    </script>
+
+</body>
+</html>
